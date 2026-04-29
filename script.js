@@ -622,6 +622,8 @@
   let exploreSearchIndex = [];
   let homeSearchIndex = [];
   let careerSearchIndex = [];
+  let exploreTableDataLoadPromise = null;
+  let homeSearchIndexLoadPromise = null;
   let exploreSearchTimer = null;
   let homeSearchTimer = null;
   let careerSearchTimer = null;
@@ -1379,16 +1381,49 @@
 };
 
 
-  function loadExploreTableData() {
-    return new Promise((resolve, reject) => {
-      if (window.QCTO_EXPLORE_TABLE_DATA) {
-        resolve(window.QCTO_EXPLORE_TABLE_DATA);
-        return;
-      }
+  function expandCompactExploreData(compactPayload) {
+    if (!compactPayload || !Array.isArray(compactPayload.columns) || !Array.isArray(compactPayload.rows)) {
+      return [];
+    }
 
+    const columns = compactPayload.columns;
+    return compactPayload.rows.map((row) => {
+      const record = {};
+      columns.forEach((column, index) => {
+        record[column] = row[index] ?? "";
+      });
+      return record;
+    });
+  }
+
+  function getExploreTableDataFromWindow() {
+    if (Array.isArray(window.QCTO_EXPLORE_TABLE_DATA)) {
+      return window.QCTO_EXPLORE_TABLE_DATA;
+    }
+
+    if (window.QCTO_EXPLORE_TABLE_DATA_COMPACT) {
+      window.QCTO_EXPLORE_TABLE_DATA = expandCompactExploreData(window.QCTO_EXPLORE_TABLE_DATA_COMPACT);
+      delete window.QCTO_EXPLORE_TABLE_DATA_COMPACT;
+      return window.QCTO_EXPLORE_TABLE_DATA;
+    }
+
+    return null;
+  }
+
+  function loadExploreTableData() {
+    const availableData = getExploreTableDataFromWindow();
+    if (availableData) {
+      return Promise.resolve(availableData);
+    }
+
+    if (exploreTableDataLoadPromise) {
+      return exploreTableDataLoadPromise;
+    }
+
+    exploreTableDataLoadPromise = new Promise((resolve, reject) => {
       const existingScript = document.querySelector('script[data-explore-table-data="true"]');
       if (existingScript) {
-        existingScript.addEventListener("load", () => resolve(window.QCTO_EXPLORE_TABLE_DATA || []), { once: true });
+        existingScript.addEventListener("load", () => resolve(getExploreTableDataFromWindow() || []), { once: true });
         existingScript.addEventListener("error", reject, { once: true });
         return;
       }
@@ -1396,10 +1431,13 @@
       const script = document.createElement("script");
       script.src = "assets/explore-table-data.js";
       script.dataset.exploreTableData = "true";
-      script.onload = () => resolve(window.QCTO_EXPLORE_TABLE_DATA || []);
+      script.async = true;
+      script.onload = () => resolve(getExploreTableDataFromWindow() || []);
       script.onerror = () => reject(new Error("Could not load Explore table data."));
       document.body.appendChild(script);
     });
+
+    return exploreTableDataLoadPromise;
   }
 
   function deriveQualificationType(qualificationTitle) {
@@ -1525,14 +1563,72 @@
     return entries;
   }
 
+  function normaliseHomeSearchIndex(rawIndex) {
+    if (!Array.isArray(rawIndex)) return [];
+
+    return rawIndex.map((entry) => {
+      if (Array.isArray(entry)) {
+        return {
+          type: entry[0],
+          value: entry[1],
+          label: entry[2],
+          normalized: entry[3] || String(entry[1] || "").toLowerCase()
+        };
+      }
+
+      return {
+        type: entry.type,
+        value: entry.value,
+        label: entry.label || truncateWords(entry.value, 4),
+        normalized: entry.normalized || String(entry.value || "").toLowerCase()
+      };
+    }).filter((entry) => entry.value && entry.normalized);
+  }
+
+  function ensureHomeSearchIndexLoaded() {
+    if (homeSearchIndex.length) return Promise.resolve(homeSearchIndex);
+
+    if (Array.isArray(window.QCTO_HOME_SEARCH_INDEX)) {
+      homeSearchIndex = normaliseHomeSearchIndex(window.QCTO_HOME_SEARCH_INDEX);
+      return Promise.resolve(homeSearchIndex);
+    }
+
+    if (homeSearchIndexLoadPromise) return homeSearchIndexLoadPromise;
+
+    homeSearchIndexLoadPromise = new Promise((resolve, reject) => {
+      const existingScript = document.querySelector('script[data-home-search-index="true"]');
+      if (existingScript) {
+        existingScript.addEventListener("load", () => {
+          homeSearchIndex = normaliseHomeSearchIndex(window.QCTO_HOME_SEARCH_INDEX || []);
+          resolve(homeSearchIndex);
+        }, { once: true });
+        existingScript.addEventListener("error", reject, { once: true });
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.src = "assets/search-index.js";
+      script.dataset.homeSearchIndex = "true";
+      script.async = true;
+      script.onload = () => {
+        homeSearchIndex = normaliseHomeSearchIndex(window.QCTO_HOME_SEARCH_INDEX || []);
+        resolve(homeSearchIndex);
+      };
+      script.onerror = () => reject(new Error("Could not load home search index."));
+      document.body.appendChild(script);
+    });
+
+    return homeSearchIndexLoadPromise;
+  }
+
   async function ensureExploreRowsLoaded() {
     if (exploreTableAllRows.length) return exploreTableAllRows;
 
     const rawRows = await loadExploreTableData();
     exploreTableAllRows = rawRows.map(prepareExploreTableRow);
     exploreSearchIndex = buildExploreSearchIndex(exploreTableAllRows);
-    homeSearchIndex = buildHomeSearchIndex(exploreTableAllRows);
-    careerSearchIndex = buildCareerSearchIndex();
+    if (!homeSearchIndex.length) homeSearchIndex = buildHomeSearchIndex(exploreTableAllRows);
+    if (!careerSearchIndex.length) careerSearchIndex = buildCareerSearchIndex();
     return exploreTableAllRows;
   }
 
@@ -2278,10 +2374,8 @@
     input.dataset.qctoCareerSearchReady = "true";
 
     const loadIndex = async () => {
-      try {
-        await ensureExploreRowsLoaded();
-      } catch (error) {
-        console.error(error);
+      if (!careerSearchIndex.length) {
+        careerSearchIndex = buildCareerSearchIndex();
       }
     };
 
@@ -2352,7 +2446,7 @@
 
     const loadIndex = async () => {
       try {
-        await ensureExploreRowsLoaded();
+        await ensureHomeSearchIndexLoaded();
       } catch (error) {
         console.error(error);
       }
@@ -2531,9 +2625,6 @@
 
   function initPopularCareersList() {
     renderPopularCareersList();
-    ensureExploreRowsLoaded()
-      .then(() => renderPopularCareersList())
-      .catch((error) => console.error(error));
 
     if (document.documentElement.dataset.qctoPopularCareersReady === "true") return;
     document.documentElement.dataset.qctoPopularCareersReady = "true";
