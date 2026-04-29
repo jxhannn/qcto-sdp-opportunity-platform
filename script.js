@@ -1,6 +1,8 @@
 (function () {
   const pageViews = document.querySelectorAll(".page-view");
   const navLinks = document.querySelectorAll(".main-nav .nav-link");
+  const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
+  const mainNav = document.querySelector(".main-nav");
   const viewTriggers = document.querySelectorAll("[data-view]");
   const validViews = ["home", "explore", "careers", "about"];
   const provinceStatsData = window.QCTO_HOME_PROVINCE_STATS || null;
@@ -281,7 +283,15 @@
     const logo = document.getElementById("home-partner-logo");
     const fallback = document.getElementById("home-partner-logo-fallback");
 
-    if (nameTarget) nameTarget.textContent = partner.name || partner.key || "Quality Partner";
+    if (nameTarget) {
+      const partnerName = partner.name || partner.key || "Quality Partner";
+      nameTarget.textContent = partnerName;
+      nameTarget.dataset.partnerFilter = partner.key || partnerName;
+      nameTarget.setAttribute("role", "button");
+      nameTarget.setAttribute("tabindex", "0");
+      nameTarget.setAttribute("title", `Open Explore filtered by ${partnerName}`);
+      nameTarget.setAttribute("aria-label", `Open Explore filtered by ${partnerName}`);
+    }
     if (descTarget) descTarget.textContent = partner.description || "Quality assured partner in the accredited provider dataset.";
     if (programmesTarget) programmesTarget.textContent = formatPartnerNumber(partner.accreditedProgrammes);
     if (activeTarget) activeTarget.textContent = formatPartnerNumber(getPartnerActiveAccreditations(partner));
@@ -312,6 +322,23 @@
 
     if (prev) prev.addEventListener("click", () => moveHomePartner(-1));
     if (next) next.addEventListener("click", () => moveHomePartner(1));
+
+    const partnerNameTarget = document.getElementById("home-partner-name");
+    const openCurrentPartnerOnExplore = () => {
+      const currentPartner = homePartners[selectedHomePartnerIndex];
+      const partnerFilter = currentPartner ? (currentPartner.key || currentPartner.name || currentPartner.shortName || "") : "";
+      if (partnerFilter) goToExploreWithFilters({ partner: partnerFilter });
+    };
+
+    if (partnerNameTarget && partnerNameTarget.dataset.qctoPartnerClickReady !== "true") {
+      partnerNameTarget.dataset.qctoPartnerClickReady = "true";
+      partnerNameTarget.addEventListener("click", openCurrentPartnerOnExplore);
+      partnerNameTarget.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        openCurrentPartnerOnExplore();
+      });
+    }
 
     carousel.addEventListener("keydown", (event) => {
       if (event.key === "ArrowLeft") {
@@ -556,6 +583,25 @@
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
+  }
+
+
+  function escapeAttribute(value) {
+    return escapeHtml(value).replace(/`/g, "&#096;");
+  }
+
+  function getEmailLinkHtml(value) {
+    const raw = String(value || "").trim();
+    if (!raw || raw.toLowerCase() === "not specified") return escapeHtml(raw || "Not specified");
+
+    const firstEmail = raw
+      .split(/[;,\s]+/)
+      .map((item) => item.trim())
+      .find((item) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(item));
+
+    if (!firstEmail) return escapeHtml(raw);
+
+    return `<a class="explore-email-link" href="mailto:${escapeAttribute(firstEmail)}">${escapeHtml(raw)}</a>`;
   }
 
   function getStatusClass(status) {
@@ -1686,7 +1732,7 @@
       <td class="nqf-cell">${escapeHtml(row.nqfLevel)}</td>
       <td>${escapeHtml(row.setaPartner)}</td>
       <td><span class="${getStatusClass(row.accreditationStatus)}">${escapeHtml(row.accreditationStatus)}</span></td>
-      <td class="email-cell">${escapeHtml(row.email)}</td>
+      <td class="email-cell">${getEmailLinkHtml(row.email)}</td>
       <td class="contact-cell">${escapeHtml(row.contact)}</td>
     `;
 
@@ -1801,6 +1847,7 @@
     const province = String(filters.province || "").trim();
     const career = String(filters.career || "").trim();
     const qualificationPrefix = String(filters.qualificationPrefix || "").trim();
+    const partner = String(filters.partner || "").trim();
     const searchTerm = String(filters.searchTerm || "").trim();
     const searchScope = String(filters.searchScope || "all").trim().toLowerCase();
 
@@ -1820,6 +1867,7 @@
     selectedExploreSearchMode = searchTerm ? searchScope : "all";
 
     setExploreSelectValue("explore-filter-career", career);
+    setExploreSelectValue("explore-filter-partner", partner);
 
     if (province) {
       setExploreSelectValue("explore-filter-province", province);
@@ -2605,6 +2653,19 @@
     });
   }
 
+  function setMobileMenuOpen(isOpen) {
+    if (!mobileMenuToggle || !mainNav) return;
+    document.body.classList.toggle("mobile-nav-open", isOpen);
+    mobileMenuToggle.classList.toggle("is-open", isOpen);
+    mobileMenuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    mobileMenuToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+  }
+
+  function toggleMobileMenu() {
+    const isOpen = document.body.classList.contains("mobile-nav-open");
+    setMobileMenuOpen(!isOpen);
+  }
+
   function showView(viewName, updateHash = true) {
     const nextView = validViews.includes(viewName) ? viewName : "home";
 
@@ -2615,6 +2676,8 @@
     navLinks.forEach((link) => {
       link.classList.toggle("active", link.dataset.view === nextView);
     });
+
+    setMobileMenuOpen(false);
 
     if (updateHash) {
       history.replaceState(null, "", "#" + nextView);
@@ -2628,6 +2691,21 @@
       initExploreResultsTableLazy();
     }
   }
+
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener("click", toggleMobileMenu);
+  }
+
+  document.addEventListener("click", (event) => {
+    if (!document.body.classList.contains("mobile-nav-open")) return;
+    if (mobileMenuToggle && mobileMenuToggle.contains(event.target)) return;
+    if (mainNav && mainNav.contains(event.target)) return;
+    setMobileMenuOpen(false);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setMobileMenuOpen(false);
+  });
 
   viewTriggers.forEach((trigger) => {
     trigger.addEventListener("click", (event) => {

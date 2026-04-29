@@ -13,7 +13,13 @@
         <img src="assets/qcto-logo.svg" alt="QCTO logo" />
       </a>
 
-      <nav class="main-nav" aria-label="Primary navigation">
+      <button class="mobile-menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+
+      <nav class="main-nav" id="primary-navigation" aria-label="Primary navigation">
         <button class="nav-link active" type="button" data-view="home">Home</button>
         <button class="nav-link nav-explore" type="button" data-view="explore">Explore</button>
         <button class="nav-link" type="button" data-view="careers">Careers</button>
@@ -395,7 +401,6 @@
         <article class="panel career-families-panel">
           <div class="career-card-head">
             <h3>Browse career families</h3>
-            <a class="panel-link" href="#">View all families <span aria-hidden="true">&rsaquo;</span></a>
           </div>
           <div class="career-family-grid" aria-label="Career families based on the current dataset">
             <button type="button" class="career-family-tile" data-career-family="Business &amp; Management" aria-haspopup="dialog"><span class="career-line-icon briefcase" aria-hidden="true"></span><strong>Business &amp; Management</strong><em>82 roles</em><small>Manage teams, operations and organisational growth.</small></button>
@@ -429,7 +434,6 @@
         <article class="panel popular-careers-panel">
           <div class="career-card-head">
             <h3>Popular careers</h3>
-            <a class="panel-link" href="#">View all careers <span aria-hidden="true">&rsaquo;</span></a>
           </div>
           <div class="career-list career-list-scroll" id="popular-careers-list" aria-label="All careers available in the current dataset">
             <button class="career-row" type="button"><span class="career-line-icon chart" aria-hidden="true"></span><span class="career-row-copy"><strong>Loading careers...</strong><small>Preparing dataset careers</small></span><span class="career-chevron" aria-hidden="true">&rsaquo;</span></button>
