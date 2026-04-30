@@ -4042,12 +4042,13 @@ img {
 
 .popular-careers-panel .career-row {
   width: 100%;
-  min-height: 56px;
+  min-height: 72px;
+  height: auto;
   display: grid;
   grid-template-columns: 42px minmax(0, 1fr) 16px;
-  align-items: center;
+  align-items: start;
   gap: 11px;
-  padding: 8px 10px;
+  padding: 10px 10px;
   border: 1px solid #edf0f6;
   border-radius: 8px;
   background: #ffffff;
@@ -4059,7 +4060,7 @@ img {
 .popular-careers-panel .career-list .career-line-icon {
   width: 34px;
   height: 34px;
-  margin: 0;
+  margin: 1px 0 0;
 }
 
 .popular-careers-panel .career-list .career-line-icon::before {
@@ -4071,26 +4072,32 @@ img {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
+  padding-top: 1px;
 }
 
 .popular-careers-panel .career-row-copy strong {
-  font-size: 12.4px;
-  line-height: 1.15;
+  font-size: 12px;
+  line-height: 1.18;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 .popular-careers-panel .career-row-copy small {
   display: block;
   color: #66758c;
-  font-size: 10.4px;
-  line-height: 1.2;
+  font-size: 9.9px;
+  line-height: 1.24;
   font-weight: 700;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: anywhere;
 }
 
 .career-chevron {
+  align-self: center;
   justify-self: end;
   color: #7b8aa3;
   font-size: 22px;
@@ -5685,7 +5692,8 @@ body.career-family-modal-open {
   }
 
   .popular-careers-panel .career-row {
-    min-height: 58px;
+    min-height: 78px;
+    align-items: start;
   }
 
   .how-steps {
@@ -6839,5 +6847,220 @@ body.career-family-modal-open {
   .career-family-modal__dialog {
     width: calc(100vw - 28px) !important;
     max-width: calc(100vw - 28px) !important;
+  }
+}
+
+/* Final role-card overflow fix: allow long role names to expand safely inside their card */
+.page-view[data-page="careers"] .popular-careers-panel .career-list-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.page-view[data-page="careers"] .popular-careers-panel .career-row {
+  height: auto !important;
+  min-height: 82px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 16px;
+  align-items: center;
+  gap: 11px;
+  padding: 12px 12px;
+  overflow: visible;
+}
+
+.page-view[data-page="careers"] .popular-careers-panel .career-row-copy {
+  min-width: 0;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.page-view[data-page="careers"] .popular-careers-panel .career-row-copy strong {
+  display: block;
+  max-width: 100%;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  line-height: 1.22;
+}
+
+.page-view[data-page="careers"] .popular-careers-panel .career-row-copy small {
+  display: block;
+  max-width: 100%;
+  margin-top: 2px;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  line-height: 1.28;
+}
+
+@media (max-width: 900px) {
+  .page-view[data-page="careers"] .popular-careers-panel .career-row {
+    min-height: 88px;
+    padding: 12px 11px;
+  }
+}
+
+@media (max-width: 520px) {
+  .page-view[data-page="careers"] .popular-careers-panel .career-row {
+    grid-template-columns: 38px minmax(0, 1fr) 14px;
+    gap: 9px;
+    min-height: 92px;
+    padding: 12px 10px;
+  }
+
+  .page-view[data-page="careers"] .popular-careers-panel .career-list .career-line-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .page-view[data-page="careers"] .popular-careers-panel .career-row-copy strong {
+    font-size: 11.4px;
+    line-height: 1.22;
+  }
+
+  .page-view[data-page="careers"] .popular-careers-panel .career-row-copy small {
+    font-size: 9.4px;
+    line-height: 1.26;
+  }
+}
+
+
+/* Final careers wording/layout polish: All careers card and safer long-name rows */
+.page-view[data-page="careers"] .popular-careers-panel .career-list-scroll {
+  max-height: 466px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 7px;
+}
+
+.page-view[data-page="careers"] .popular-careers-panel .career-row {
+  height: auto !important;
+  min-height: 104px !important;
+  display: grid !important;
+  grid-template-columns: 42px minmax(0, 1fr) 16px !important;
+  align-items: start !important;
+  gap: 12px !important;
+  padding: 14px 12px !important;
+  overflow: hidden !important;
+}
+
+.page-view[data-page="careers"] .popular-careers-panel .career-row--long {
+  min-height: 132px !important;
+}
+
+.page-view[data-page="careers"] .popular-careers-panel .career-row--very-long {
+  min-height: 164px !important;
+}
+
+.page-view[data-page="careers"] .popular-careers-panel .career-row-copy {
+  align-self: start !important;
+  min-width: 0 !important;
+  display: block !important;
+  padding-top: 0 !important;
+  overflow: visible !important;
+}
+
+.page-view[data-page="careers"] .popular-careers-panel .career-row-copy strong {
+  display: block !important;
+  margin: 0 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+  hyphens: auto !important;
+  line-height: 1.22 !important;
+}
+
+.page-view[data-page="careers"] .popular-careers-panel .career-row-copy small {
+  display: block !important;
+  margin-top: 6px !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+  hyphens: auto !important;
+  line-height: 1.28 !important;
+}
+
+.page-view[data-page="careers"] .popular-careers-panel .career-list .career-line-icon {
+  margin-top: 2px !important;
+}
+
+.page-view[data-page="careers"] .popular-careers-panel .career-chevron {
+  align-self: center !important;
+}
+
+@media (max-width: 900px) {
+  .page-view[data-page="careers"] .popular-careers-panel .career-list-scroll {
+    max-height: 470px !important;
+  }
+
+  .page-view[data-page="careers"] .popular-careers-panel .career-row {
+    min-height: 114px !important;
+    padding: 14px 11px !important;
+  }
+
+  .page-view[data-page="careers"] .popular-careers-panel .career-row--long {
+    min-height: 148px !important;
+  }
+
+  .page-view[data-page="careers"] .popular-careers-panel .career-row--very-long {
+    min-height: 182px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .page-view[data-page="careers"] .popular-careers-panel .career-row {
+    grid-template-columns: 38px minmax(0, 1fr) 14px !important;
+    min-height: 122px !important;
+    gap: 10px !important;
+    padding: 14px 10px !important;
+  }
+
+  .page-view[data-page="careers"] .popular-careers-panel .career-row--long {
+    min-height: 160px !important;
+  }
+
+  .page-view[data-page="careers"] .popular-careers-panel .career-row--very-long {
+    min-height: 198px !important;
+  }
+
+  .page-view[data-page="careers"] .popular-careers-panel .career-row-copy strong {
+    font-size: 11.2px !important;
+    line-height: 1.23 !important;
+  }
+
+  .page-view[data-page="careers"] .popular-careers-panel .career-row-copy small {
+    font-size: 9.2px !important;
+    line-height: 1.28 !important;
+  }
+}
+
+/* Mobile alignment fix for the About page learnership statement */
+@media (max-width: 640px) {
+  .page-view[data-page="about"] .about-callout {
+    display: grid !important;
+    grid-template-columns: 70px minmax(0, 1fr) !important;
+    gap: 18px !important;
+    align-items: center !important;
+    padding: 16px 18px !important;
+    padding-left: 18px !important;
+  }
+
+  .page-view[data-page="about"] .about-callout .callout-icon {
+    width: 58px !important;
+    height: 58px !important;
+    justify-self: center !important;
+  }
+
+  .page-view[data-page="about"] .about-callout .callout-copy {
+    min-width: 0 !important;
+    gap: 5px !important;
   }
 }

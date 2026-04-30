@@ -1,9 +1,69 @@
 window.QCTO_HOME_PARTNERS = [
   {
+    "key": "SERVICES SETA",
+    "name": "Services SETA",
+    "description": "Services Sector Education and Training Authority",
+    "accreditedProgrammes": 72,
+    "activeAccreditations": 7465,
+    "domain": "https://www.serviceseta.org.za",
+    "officialLogoSrc": "",
+    "logoSrc": "assets/partner-logos/services-seta.png",
+    "logoShape": "square",
+    "fallback": "SERVICES"
+  },
+  {
+    "key": "NATED",
+    "name": "NATED",
+    "description": "National Accredited Technical Education Diploma programmes",
+    "accreditedProgrammes": 82,
+    "activeAccreditations": 5425,
+    "domain": "https://www.dhet.gov.za",
+    "officialLogoSrc": "",
+    "logoSrc": "assets/partner-logos/nated.png",
+    "logoShape": "square",
+    "fallback": "NATED"
+  },
+  {
+    "key": "HWSETA",
+    "name": "HWSETA",
+    "description": "Health and Welfare Sector Education and Training Authority",
+    "accreditedProgrammes": 47,
+    "activeAccreditations": 5376,
+    "domain": "https://www.hwseta.org.za",
+    "officialLogoSrc": "",
+    "logoSrc": "assets/partner-logos/hwseta.png",
+    "logoShape": "wide",
+    "fallback": "HWSETA"
+  },
+  {
+    "key": "ETDP SETA",
+    "name": "ETDP SETA",
+    "description": "Education, Training and Development Practices Sector Education and Training Authority",
+    "accreditedProgrammes": 29,
+    "activeAccreditations": 2870,
+    "domain": "https://www.etdpseta.org.za",
+    "officialLogoSrc": "",
+    "logoSrc": "assets/partner-logos/etdp-seta.png",
+    "logoShape": "wide",
+    "fallback": "ETDP"
+  },
+  {
+    "key": "TETA",
+    "name": "TETA",
+    "description": "Transport Education and Training Authority",
+    "accreditedProgrammes": 121,
+    "activeAccreditations": 2729,
+    "domain": "https://www.teta.org.za",
+    "officialLogoSrc": "",
+    "logoSrc": "assets/partner-logos/teta.png",
+    "logoShape": "square",
+    "fallback": "TETA"
+  },
+  {
     "key": "MICT SETA",
     "name": "MICT SETA",
     "description": "Media, Information and Communication Technologies Sector Education and Training Authority",
-    "accreditedProgrammes": 52,
+    "accreditedProgrammes": 53,
     "activeAccreditations": 2585,
     "domain": "https://www.mict.org.za",
     "officialLogoSrc": "",
@@ -12,51 +72,64 @@ window.QCTO_HOME_PARTNERS = [
     "fallback": "MICT"
   },
   {
-    "key": "AGRISETA",
-    "name": "AgriSETA",
-    "description": "Agricultural Sector Education and Training Authority",
-    "accreditedProgrammes": 27,
-    "activeAccreditations": 933,
-    "domain": "https://www.agriseta.co.za",
+    "key": "W&R SETA",
+    "name": "W&R SETA",
+    "description": "Wholesale and Retail Sector Education and Training Authority",
+    "accreditedProgrammes": 20,
+    "activeAccreditations": 1916,
+    "domain": "https://www.wrseta.org.za",
     "officialLogoSrc": "",
-    "logoSrc": "assets/partner-logos/agriseta.png",
-    "logoShape": "square",
-    "fallback": "AGRISETA"
-  },
-  {
-    "key": "BANKSETA",
-    "name": "BANKSETA",
-    "officialLogoSrc": "",
-    "description": "Banking Sector Education and Training Authority",
-    "accreditedProgrammes": 11,
-    "activeAccreditations": 138,
-    "domain": "https://www.bankseta.org.za",
-    "logoSrc": "assets/partner-logos/bankseta.jpg",
-    "logoShape": "square",
-    "fallback": "BANKSETA"
-  },
-  {
-    "key": "CATHSSETA",
-    "name": "CATHSSETA",
-    "description": "Culture, Arts, Tourism, Hospitality and Sport Sector Education and Training Authority",
-    "accreditedProgrammes": 19,
-    "activeAccreditations": 665,
-    "domain": "https://www.cathsseta.org.za",
-    "logoSrc": "assets/partner-logos/cathsseta.png",
+    "logoSrc": "assets/partner-logos/wrseta.jpg",
     "logoShape": "wide",
-    "fallback": "CATHSSETA"
+    "fallback": "W&R"
+  },
+  {
+    "key": "OLD TRADES",
+    "name": "Old Trades",
+    "description": "Legacy trade qualifications recorded in the accredited provider dataset",
+    "accreditedProgrammes": 71,
+    "activeAccreditations": 1877,
+    "domain": "https://www.qcto.org.za",
+    "officialLogoSrc": "",
+    "logoSrc": "",
+    "logoShape": "square",
+    "fallback": "TRADE"
   },
   {
     "key": "CETA",
     "name": "CETA",
-    "officialLogoSrc": "",
     "description": "Construction Education and Training Authority",
-    "accreditedProgrammes": 50,
-    "activeAccreditations": 1453,
+    "accreditedProgrammes": 51,
+    "activeAccreditations": 1455,
     "domain": "https://www.ceta.org.za",
+    "officialLogoSrc": "",
     "logoSrc": "assets/partner-logos/ceta.png",
     "logoShape": "square",
     "fallback": "CETA"
+  },
+  {
+    "key": "MERSETA",
+    "name": "merSETA",
+    "description": "Manufacturing, Engineering and Related Services Sector Education and Training Authority",
+    "accreditedProgrammes": 89,
+    "activeAccreditations": 1388,
+    "domain": "https://www.merseta.org.za",
+    "officialLogoSrc": "",
+    "logoSrc": "assets/partner-logos/merseta.png",
+    "logoShape": "wide",
+    "fallback": "MERSETA"
+  },
+  {
+    "key": "SASSETA",
+    "name": "SASSETA",
+    "description": "Safety and Security Sector Education and Training Authority",
+    "accreditedProgrammes": 24,
+    "activeAccreditations": 1040,
+    "domain": "https://www.sasseta.org.za",
+    "officialLogoSrc": "",
+    "logoSrc": "assets/partner-logos/sasseta.png",
+    "logoShape": "square",
+    "fallback": "SASSETA"
   },
   {
     "key": "CHIETA",
@@ -71,18 +144,6 @@ window.QCTO_HOME_PARTNERS = [
     "fallback": "CHIETA"
   },
   {
-    "key": "ETDP SETA",
-    "name": "ETDP SETA",
-    "description": "Education, Training and Development Practices Sector Education and Training Authority",
-    "accreditedProgrammes": 22,
-    "activeAccreditations": 2869,
-    "domain": "https://www.etdpseta.org.za",
-    "officialLogoSrc": "",
-    "logoSrc": "assets/partner-logos/etdp-seta.png",
-    "logoShape": "wide",
-    "fallback": "ETDP"
-  },
-  {
     "key": "EWSETA",
     "name": "EWSETA",
     "description": "Energy and Water Sector Education and Training Authority",
@@ -95,53 +156,16 @@ window.QCTO_HOME_PARTNERS = [
     "fallback": "EWSETA"
   },
   {
-    "key": "FASSET",
-    "name": "FASSET",
-    "description": "Finance and Accounting Services Sector Education and Training Authority",
-    "accreditedProgrammes": 25,
-    "activeAccreditations": 674,
-    "domain": "https://www.fasset.org.za",
+    "key": "AGRISETA",
+    "name": "AgriSETA",
+    "description": "Agricultural Sector Education and Training Authority",
+    "accreditedProgrammes": 27,
+    "activeAccreditations": 933,
+    "domain": "https://www.agriseta.co.za",
     "officialLogoSrc": "",
-    "logoSrc": "assets/partner-logos/fasset.jpg",
-    "logoShape": "wide",
-    "fallback": "FASSET",
-    "logoTone": "dark"
-  },
-  {
-    "key": "FOODBEV SETA",
-    "name": "FoodBev SETA",
-    "description": "Food and Beverages Manufacturing Sector Education and Training Authority",
-    "accreditedProgrammes": 18,
-    "activeAccreditations": 316,
-    "domain": "https://www.foodbev.co.za",
-    "officialLogoSrc": "",
-    "logoSrc": "assets/partner-logos/foodbev-seta.png",
-    "logoShape": "wide",
-    "fallback": "FOODBEV"
-  },
-  {
-    "key": "FP&M SETA",
-    "name": "FP&M SETA",
-    "description": "Fibre Processing and Manufacturing Sector Education and Training Authority",
-    "accreditedProgrammes": 96,
-    "activeAccreditations": 636,
-    "domain": "https://www.fpmseta.org.za",
-    "officialLogoSrc": "",
-    "logoSrc": "assets/partner-logos/fpm-seta.svg",
+    "logoSrc": "assets/partner-logos/agriseta.png",
     "logoShape": "square",
-    "fallback": "FP&M"
-  },
-  {
-    "key": "HWSETA",
-    "name": "HWSETA",
-    "description": "Health and Welfare Sector Education and Training Authority",
-    "accreditedProgrammes": 43,
-    "activeAccreditations": 5376,
-    "domain": "https://www.hwseta.org.za",
-    "officialLogoSrc": "",
-    "logoSrc": "assets/partner-logos/hwseta.png",
-    "logoShape": "wide",
-    "fallback": "HWSETA"
+    "fallback": "AGRISETA"
   },
   {
     "key": "INSETA",
@@ -156,6 +180,54 @@ window.QCTO_HOME_PARTNERS = [
     "fallback": "INSETA"
   },
   {
+    "key": "FASSET",
+    "name": "FASSET",
+    "description": "Finance and Accounting Services Sector Education and Training Authority",
+    "accreditedProgrammes": 22,
+    "activeAccreditations": 674,
+    "domain": "https://www.fasset.org.za",
+    "officialLogoSrc": "",
+    "logoSrc": "assets/partner-logos/fasset.jpg",
+    "logoShape": "wide",
+    "fallback": "FASSET"
+  },
+  {
+    "key": "CATHSSETA",
+    "name": "CATHSSETA",
+    "description": "Culture, Arts, Tourism, Hospitality and Sport Sector Education and Training Authority",
+    "accreditedProgrammes": 18,
+    "activeAccreditations": 665,
+    "domain": "https://www.cathsseta.org.za",
+    "officialLogoSrc": "",
+    "logoSrc": "assets/partner-logos/cathsseta.png",
+    "logoShape": "wide",
+    "fallback": "CATHSSETA"
+  },
+  {
+    "key": "FP&M SETA",
+    "name": "FP&M SETA",
+    "description": "Fibre Processing and Manufacturing Sector Education and Training Authority",
+    "accreditedProgrammes": 96,
+    "activeAccreditations": 636,
+    "domain": "https://www.fpmseta.org.za",
+    "officialLogoSrc": "",
+    "logoSrc": "assets/partner-logos/fpm-seta.svg",
+    "logoShape": "square",
+    "fallback": "FP&M"
+  },
+  {
+    "key": "FOODBEV SETA",
+    "name": "FoodBev SETA",
+    "description": "Food and Beverages Manufacturing Sector Education and Training Authority",
+    "accreditedProgrammes": 20,
+    "activeAccreditations": 316,
+    "domain": "https://www.foodbev.co.za",
+    "officialLogoSrc": "",
+    "logoSrc": "assets/partner-logos/foodbev-seta.png",
+    "logoShape": "wide",
+    "fallback": "FOODBEV"
+  },
+  {
     "key": "LGSETA",
     "name": "LGSETA",
     "description": "Local Government Sector Education and Training Authority",
@@ -168,16 +240,16 @@ window.QCTO_HOME_PARTNERS = [
     "fallback": "LGSETA"
   },
   {
-    "key": "MERSETA",
-    "name": "merSETA",
-    "description": "Manufacturing, Engineering and Related Services Sector Education and Training Authority",
-    "accreditedProgrammes": 93,
-    "activeAccreditations": 1388,
-    "domain": "https://www.merseta.org.za",
+    "key": "PSETA",
+    "name": "PSETA",
+    "description": "Public Service Sector Education and Training Authority",
+    "accreditedProgrammes": 11,
+    "activeAccreditations": 236,
+    "domain": "https://www.pseta.org.za",
     "officialLogoSrc": "",
-    "logoSrc": "assets/partner-logos/merseta.png",
-    "logoShape": "wide",
-    "fallback": "MERSETA"
+    "logoSrc": "assets/partner-logos/pseta.png",
+    "logoShape": "square",
+    "fallback": "PSETA"
   },
   {
     "key": "MQA",
@@ -192,39 +264,16 @@ window.QCTO_HOME_PARTNERS = [
     "fallback": "MQA"
   },
   {
-    "key": "NATED",
-    "name": "NATED",
-    "officialLogoSrc": "",
-    "description": "National Accredited Technical Education Diploma programmes",
-    "accreditedProgrammes": 82,
-    "activeAccreditations": 5425,
-    "domain": "https://www.dhet.gov.za",
-    "logoSrc": "assets/partner-logos/nated.png",
-    "fallback": "NATED",
-    "logoShape": "square"
-  },
-  {
-    "key": "OLD TRADES",
-    "name": "Old Trades",
-    "description": "Legacy trade qualifications recorded in the accredited provider dataset",
-    "accreditedProgrammes": 71,
-    "activeAccreditations": 1877,
-    "domain": "https://www.qcto.org.za",
-    "officialLogoSrc": "",
-    "logoSrc": "",
-    "fallback": "TRADE"
-  },
-  {
-    "key": "PSETA",
-    "name": "PSETA",
-    "description": "Public Service Sector Education and Training Authority",
+    "key": "BANKSETA",
+    "name": "BANKSETA",
+    "description": "Banking Sector Education and Training Authority",
     "accreditedProgrammes": 11,
-    "activeAccreditations": 236,
-    "domain": "https://www.pseta.org.za",
+    "activeAccreditations": 138,
+    "domain": "https://www.bankseta.org.za",
     "officialLogoSrc": "",
-    "logoSrc": "assets/partner-logos/pseta.png",
+    "logoSrc": "assets/partner-logos/bankseta.jpg",
     "logoShape": "square",
-    "fallback": "PSETA"
+    "fallback": "BANKSETA"
   },
   {
     "key": "QCTO",
@@ -245,56 +294,9 @@ window.QCTO_HOME_PARTNERS = [
     "accreditedProgrammes": 3,
     "activeAccreditations": 8,
     "domain": "https://www.sapc.za.org",
+    "officialLogoSrc": "",
     "logoSrc": "assets/partner-logos/sapc.png",
     "logoShape": "square",
     "fallback": "SAPC"
-  },
-  {
-    "key": "SASSETA",
-    "name": "SASSETA",
-    "description": "Safety and Security Sector Education and Training Authority",
-    "accreditedProgrammes": 23,
-    "activeAccreditations": 1040,
-    "domain": "https://www.sasseta.org.za",
-    "officialLogoSrc": "",
-    "logoSrc": "assets/partner-logos/sasseta.png",
-    "logoShape": "square",
-    "fallback": "SASSETA"
-  },
-  {
-    "key": "SERVICES SETA",
-    "name": "Services SETA",
-    "description": "Services Sector Education and Training Authority",
-    "accreditedProgrammes": 71,
-    "activeAccreditations": 7466,
-    "domain": "https://www.serviceseta.org.za",
-    "officialLogoSrc": "",
-    "logoSrc": "assets/partner-logos/services-seta.png",
-    "logoShape": "square",
-    "fallback": "SERVICES"
-  },
-  {
-    "key": "TETA",
-    "name": "TETA",
-    "description": "Transport Education and Training Authority",
-    "accreditedProgrammes": 86,
-    "activeAccreditations": 2729,
-    "domain": "https://www.teta.org.za",
-    "officialLogoSrc": "",
-    "logoSrc": "assets/partner-logos/teta.png",
-    "logoShape": "square",
-    "fallback": "TETA"
-  },
-  {
-    "key": "W&R SETA",
-    "name": "W&R SETA",
-    "description": "Wholesale and Retail Sector Education and Training Authority",
-    "accreditedProgrammes": 21,
-    "activeAccreditations": 1916,
-    "domain": "https://www.wrseta.org.za",
-    "officialLogoSrc": "",
-    "logoSrc": "assets/partner-logos/wrseta.jpg",
-    "logoShape": "wide",
-    "fallback": "W&R"
   }
 ];
