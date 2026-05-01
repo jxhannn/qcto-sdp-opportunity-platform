@@ -3133,15 +3133,15 @@ img {
   height: 100%;
 }
 
-.page-view[data-page="home"] .map-bubble.gauteng { left: 70%; top: 35%; width: 23px; height: 23px; background: var(--za-gauteng); }
-.page-view[data-page="home"] .map-bubble.kzn { left: 84%; top: 58%; width: 25px; height: 25px; background: var(--za-kzn); }
-.page-view[data-page="home"] .map-bubble.limpopo { left: 76%; top: 18%; width: 24px; height: 24px; background: var(--za-limpopo); }
-.page-view[data-page="home"] .map-bubble.western-cape { left: 24%; top: 84%; width: 25px; height: 25px; background: var(--za-western-cape); }
-.page-view[data-page="home"] .map-bubble.eastern-cape { left: 60%; top: 78%; width: 22px; height: 22px; background: var(--za-eastern-cape); }
-.page-view[data-page="home"] .map-bubble.mpumalanga { left: 82%; top: 34%; width: 21px; height: 21px; background: var(--za-mpumalanga); }
-.page-view[data-page="home"] .map-bubble.north-west { left: 55%; top: 38%; width: 18px; height: 18px; background: var(--za-north-west); }
-.page-view[data-page="home"] .map-bubble.free-state { left: 64%; top: 55%; width: 20px; height: 20px; background: var(--za-free-state); }
-.page-view[data-page="home"] .map-bubble.northern-cape { left: 31%; top: 58%; width: 21px; height: 21px; background: var(--za-northern-cape); }
+.page-view[data-page="home"] .map-bubble.gauteng { left: 72%; top: 31%; width: 23px; height: 23px; background: var(--za-gauteng); }
+.page-view[data-page="home"] .map-bubble.kzn { left: 86%; top: 52%; width: 25px; height: 25px; background: var(--za-kzn); }
+.page-view[data-page="home"] .map-bubble.limpopo { left: 79.5%; top: 13%; width: 24px; height: 24px; background: var(--za-limpopo); }
+.page-view[data-page="home"] .map-bubble.western-cape { left: 23.5%; top: 86%; width: 25px; height: 25px; background: var(--za-western-cape); }
+.page-view[data-page="home"] .map-bubble.eastern-cape { left: 58.5%; top: 79%; width: 22px; height: 22px; background: var(--za-eastern-cape); }
+.page-view[data-page="home"] .map-bubble.mpumalanga { left: 84%; top: 29.5%; width: 21px; height: 21px; background: var(--za-mpumalanga); }
+.page-view[data-page="home"] .map-bubble.north-west { left: 54.5%; top: 33%; width: 18px; height: 18px; background: var(--za-north-west); }
+.page-view[data-page="home"] .map-bubble.free-state { left: 62.5%; top: 51%; width: 20px; height: 20px; background: var(--za-free-state); }
+.page-view[data-page="home"] .map-bubble.northern-cape { left: 29%; top: 58%; width: 21px; height: 21px; background: var(--za-northern-cape); }
 
 .page-view[data-page="home"] .province-bubble {
   cursor: pointer;
